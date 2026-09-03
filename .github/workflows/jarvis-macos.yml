@@ -1,0 +1,42 @@
+name: Jarvis macOS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/jarvis-macos/**"
+      - ".github/workflows/jarvis-macos.yml"
+  pull_request:
+    paths:
+      - "apps/jarvis-macos/**"
+      - ".github/workflows/jarvis-macos.yml"
+
+jobs:
+  test:
+    runs-on: macos-14
+    defaults:
+      run:
+        working-directory: apps/jarvis-macos
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build and test
+        run: |
+          xcodebuild \
+            -project Jarvis.xcodeproj \
+            -scheme Jarvis \
+            -configuration Debug \
+            -destination 'platform=macOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            test

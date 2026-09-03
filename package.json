@@ -1,0 +1,14 @@
+{
+  "name": "limule-jarvis",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Compagnon de developpement local pour Limule",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

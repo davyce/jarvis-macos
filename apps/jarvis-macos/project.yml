@@ -1,0 +1,56 @@
+name: Jarvis
+options:
+  bundleIdPrefix: com.adansonia
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    PRODUCT_NAME: "Jarvis"
+    PRODUCT_MODULE_NAME: Jarvis
+    PRODUCT_BUNDLE_IDENTIFIER: com.adansonia.jarvis
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: 264EZSM3VZ
+    ENABLE_HARDENED_RUNTIME: YES
+    CLANG_ANALYZER_NONNULL: YES
+    SWIFT_STRICT_CONCURRENCY: complete
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+targets:
+  Jarvis:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Sources/Jarvis
+    dependencies:
+      - sdk: libsqlite3.tbd
+      - sdk: MetalKit.framework
+      - sdk: Metal.framework
+      - sdk: QuartzCore.framework
+      - sdk: ApplicationServices.framework
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Sources/Jarvis/Info.plist
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: NO
+        CODE_SIGN_ENTITLEMENTS: Sources/Jarvis/Jarvis.entitlements
+
+  JarvisTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Tests/JarvisTests
+    dependencies:
+      - target: Jarvis
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_MODULE_NAME: JarvisTests
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Jarvis.app/Contents/MacOS/Jarvis"

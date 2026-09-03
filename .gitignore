@@ -1,0 +1,28 @@
+# JavaScript and desktop builds
+node_modules/
+dist/
+dist-electron/
+target/
+release/
+
+# Local state and secrets
+.env
+.env.*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+
+# OS and IDE files
+.DS_Store
+.idea/
+*.swp
+xcuserdata/
+*.xcuserstate
+
+# Xcode build artifacts
+build/
+DerivedData/
+*.xcarchive
+.build/
+*.profraw

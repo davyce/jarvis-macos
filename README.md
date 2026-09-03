@@ -1,4 +1,6 @@
-🇬🇧 **English** · [🇫🇷 Français](README.fr.md)
+<p align="center"><img src="docs/assets/logo.png" width="112" alt="Jarvis logo" /></p>
+
+<p align="center">🇬🇧 <b>English</b> · <a href="README.fr.md">🇫🇷 Français</a></p>
 
 # Jarvis
 
